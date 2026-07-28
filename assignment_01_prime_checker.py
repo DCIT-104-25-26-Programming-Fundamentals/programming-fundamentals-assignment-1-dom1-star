@@ -35,3 +35,34 @@
 # YOUR CODE BELOW — remove the # symbols from the scaffold and fill it in
 # =============================================================================
 
+def is_prime(n: int) -> bool:
+	"""Return True if n is prime, False otherwise.
+
+	Numbers less than 2 are not prime.
+	Uses trial division up to sqrt(n) with odd-step optimization.
+	"""
+	if n < 2:
+		return False
+	if n == 2:
+		return True
+	if n % 2 == 0:
+		return False
+
+	import math
+	limit = int(math.isqrt(n))
+	for i in range(3, limit + 1, 2):
+		if n % i == 0:
+			return False
+	return True
+
+
+if __name__ == "__main__":
+	try:
+		value = int(input("Enter a number: "))
+	except ValueError:
+		print("Invalid input. Please enter an integer.")
+	else:
+		if is_prime(value):
+			print(f"{value} is a prime number.")
+		else:
+			print(f"{value} is NOT a prime number.")
